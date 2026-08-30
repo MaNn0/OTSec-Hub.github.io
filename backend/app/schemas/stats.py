@@ -1,7 +1,7 @@
 # schemas/stats.py
 
 from pydantic import BaseModel
-from typing import List
+
 
 class ProgressPieChartOut(BaseModel):
     user_id: int
@@ -10,9 +10,12 @@ class ProgressPieChartOut(BaseModel):
     remaining_videos: int
     completed_quizzes: int
     remaining_quizzes: int
-    completed_labs: int  # New field
-    remaining_labs: int  # New field
-    # videoList: List[str] # List of completed video titles
+    completed_labs: int
+    remaining_labs: int
+    completed_exercises: int = 0
+    remaining_exercises: int = 0
+    overall_percent: int = 0
+    certificate_ready: bool = False
 
     class Config:
         from_attributes = True

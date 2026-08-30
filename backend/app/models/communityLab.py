@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, func
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, func, Text
 from sqlalchemy.orm import relationship
 from app.database import Base
 
@@ -8,10 +8,10 @@ class CommunityLab(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     title = Column(String, nullable=False)
     lab_img = Column(String, nullable=False)
-    pdf = Column(String, nullable=False)
-    content = Column (String, nullable=True)
+    topics = Column(String, nullable=True)
     status = Column(String, nullable=False)
-    message = Column(String, nullable=True)
+    description = Column(String, nullable=True)
+    content = Column(Text, nullable=False)  
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     
     user = relationship("User", back_populates="community_labs")

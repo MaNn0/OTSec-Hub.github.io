@@ -15,6 +15,10 @@ class LabOut(BaseModel):
     lab_img : str
     quizzes: List[QuizOut]
     
+    views_count: int = 0
+    likes_count: int = 0
+    is_liked_by_user: bool = False
+    
     class Config:
         from_attributes=True
     
@@ -25,5 +29,4 @@ class LabUpdate(BaseModel):
     quizzes: Optional[List[QuizUpdate]] = None
     
     class Config:
-        # orm_mode = True #old way pydantic v1
-        from_attributes = True #new way pydantic v2x
+        from_attributes = True

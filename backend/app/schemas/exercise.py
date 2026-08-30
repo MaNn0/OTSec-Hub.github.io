@@ -13,6 +13,13 @@ class ExerciseOut(BaseModel):
     subtitle: str
     content: str
     questions: List[str] = Field(default_factory=list)
+    
+    views_count: int = 0
+    likes_count: int = 0
+    is_liked_by_user: bool = False
+
+    class Config:
+        from_attributes = True
 
 class ExerciseUpdate(BaseModel):
     title: Optional[str] = None

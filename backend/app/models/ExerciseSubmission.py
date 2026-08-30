@@ -11,5 +11,6 @@ class ExerciseSubmission(Base):
     exercise_id = Column(Integer, ForeignKey("exercise.id"), nullable=False)
     answers = Column(JSON, nullable=False)
     status = Column(String, default="pending")
+    admin_note = Column(String, nullable=True)  
     
     exercise = relationship("Exercise", back_populates="submissions")

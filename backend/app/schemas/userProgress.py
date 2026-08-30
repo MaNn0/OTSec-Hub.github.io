@@ -2,7 +2,8 @@ from pydantic import BaseModel
 from datetime import datetime
 from .user import UserOut
 from .quiz import QuizOut
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
+from datetime import date
 
 
 class UserProgressCreate(BaseModel):
@@ -18,8 +19,13 @@ class UserProgressOut(BaseModel):
     user_name: Optional[str] = None
     user_email: Optional[str] = None
     content_title: Optional[str] = None
-
-
+    
+    # Newly added streak fields to pass through to the frontend
+    streak_count: Optional[int] = None
+    streak_freezes: Optional[int] = None
+    last_active_date: Optional[date] = None
+    
+    new_badges: Optional[List[Dict[str, Any]]] = []
+    
     class Config:
-        # orm_mode = True
         from_attributes = True

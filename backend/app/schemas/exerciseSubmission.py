@@ -11,11 +11,14 @@ class ExerciseSubmissionOut(BaseModel):
     user_id: int
     exercise_id: int
     answers: List[str]
-    exercise : ExerciseOut
+    exercise: ExerciseOut
     status: str
+    admin_note: Optional[str] = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True
         
 class ExerciseSubmissionUpdate(BaseModel):
     status: str
+    admin_note: Optional[str] = None
+    answers: Optional[List[str]] = None  # Allows users to overwrite answers arrays

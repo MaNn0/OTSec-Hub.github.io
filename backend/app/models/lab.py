@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime, func
 from sqlalchemy.orm import relationship
 from app.database import Base
 
@@ -9,4 +9,7 @@ class Lab(Base):
     lab_img = Column(String, nullable=False)
     content = Column(String, nullable=False)
     
-    quizzes = relationship("Quiz", back_populates="lab")
+    views_count = Column(Integer, default=0, nullable=False)
+    likes_count = Column(Integer, default=0, nullable=False)
+    
+    quizzes = relationship("Quiz", back_populates="lab", cascade="all, delete-orphan")

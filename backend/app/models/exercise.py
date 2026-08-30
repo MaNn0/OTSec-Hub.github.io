@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime, func
 from sqlalchemy.orm import relationship
-from sqlalchemy.dialects.postgresql import JSON  # Use this if you're using PostgreSQL
+from sqlalchemy.dialects.postgresql import JSON
 from app.database import Base
 
 class Exercise(Base):
@@ -11,4 +11,8 @@ class Exercise(Base):
     content = Column(String, nullable=False)
     questions = Column(JSON, nullable=True)
     
-    submissions = relationship("ExerciseSubmission", back_populates="exercise")
+    # Atomic Metric Nodes for Free Tier Preservation
+    views_count = Column(Integer, default=0, nullable=False)
+    likes_count = Column(Integer, default=0, nullable=False)
+    
+    submissions = relationship("ExerciseSubmission", back_populates="exercise", cascade="all, delete-orphan")
